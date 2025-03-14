@@ -10,10 +10,12 @@ A continuación se listan todas las entidades relevantes a la creación de las t
     * Correo
     * Información de contacto adicional (numero telefónico, Instagram, etc)
 - Permisos administrativos y de consumidor (incluyendo accesos, grants y denies)
-- Almacenamiento de archivos (attachments, recordings, media files, documentos, URLs, etc)
+- Almacenamiento de archivos (attachments, media files, documentos, URLs bancarios, etc)
 - Transacciones y pagos
 - Suscripciones, planes y sus límites respectivos
-- Bitácora y logs
+- Bitácora
+    * Pagos intentados, fallidos y exitosos
+    * Montos, fechas y cuenta de origen
 - Scheduling
 - Internacionalización
 - Manejo de cambios entre sistemas monetarios (dólar, colones, pesos, etc.)
