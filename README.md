@@ -2,6 +2,9 @@
 ## Payment Assistant
 Imagina un asistente personal que no solo recuerda tus pagos recurrentes, sino que también los ejecuta por ti con solo confirmar un recordatorio. Con tecnología de inteligencia artificial de vanguardia, nuestra app te permite registrar y programar pagos de servicios como luz, agua, renta y más, usando simplemente tu voz. Olvídate de fechas vencidas, multas o estrés financiero. Además, con planes flexibles que se adaptan a tus necesidades, disfrutas de una experiencia gratuita para un pago mensual y opciones premium para múltiples transacciones.
 
+#### Notas Importantes:
+Para la revisión de los archivos adjuntos, se recomienda descargar el PDF para mejorar su visualización.
+
 ## Lista de Entidades
 A continuación se listan todas las entidades relevantes a la creación de las tablas en MySQL Workbench.
 - Usuarios y sus perfiles respectivos:
