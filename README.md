@@ -5,8 +5,7 @@ Imagina un asistente personal que no solo recuerda tus pagos recurrentes, sino q
 ## Lista de Entidades
 A continuación se listan todas las entidades relevantes a la creación de las tablas en MySQL Workbench.
 - Usuarios y sus perfiles respectivos:
-    * Nombre
-    * Apellido
+    * Nombre y apellido
     * Correo
     * Información de contacto adicional (numero telefónico, Instagram, etc)
 - Permisos administrativos y de consumidor (incluyendo accesos, grants y denies)
