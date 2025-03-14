@@ -9,8 +9,7 @@ Para la revisión de los archivos adjuntos, se recomienda descargar el PDF para 
 A continuación se listan todas las entidades relevantes a la creación de las tablas en MySQL Workbench.
 - Usuarios y sus perfiles respectivos:
     * Nombre y apellido
-    * Correo
-    * Información de contacto adicional (numero telefónico, Instagram, etc)
+    * Información de contacto adicional (numero telefónico, Instagram, correo, etc)
 - Permisos administrativos y de consumidor (incluyendo accesos, grants y denies)
 - Almacenamiento de archivos (attachments, media files, documentos, URLs bancarios, etc)
 - Transacciones y pagos
