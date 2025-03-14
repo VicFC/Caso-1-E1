@@ -15,7 +15,7 @@ A continuación se listan todas las entidades relevantes a la creación de las t
 - Suscripciones, planes y sus límites respectivos
 - Bitácora
     * Pagos intentados, fallidos y exitosos
-    * Montos, fechas y cuenta de origen
+    * Montos, métodos de pago, fechas y cuenta de origen
 - Scheduling
 - Internacionalización
 - Manejo de cambios entre sistemas monetarios (dólar, colones, pesos, etc.)
