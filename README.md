@@ -11,7 +11,15 @@ A continuación se listan todas las entidades relevantes a la creación de las t
 - Permisos administrativos y de consumidor (incluyendo accesos, grants y denies)
 - Almacenamiento de archivos (attachments, media files, documentos, URLs bancarios, etc)
 - Transacciones y pagos
-- Suscripciones, planes y sus límites respectivos
+    * Monto
+    * Moneda
+    * Fecha
+    * Resultado
+    * Autenticador
+    * Descriptión
+    * Manejo de errores
+    * Tipo de transacción
+- Suscripciones, planes y sus costo/límites/features respectivos
 - Bitácora
     * Pagos intentados, fallidos y exitosos
     * Montos, métodos de pago, fechas y cuenta de origen
