@@ -17,5 +17,5 @@ A continuación se listan todas las entidades relevantes a la creación de las t
 ### Estudiantes
 - Victor Andrés Fung Chiong
 - Giovanni Esquivel Cortés
-- 
+  
  ### IC 4301 - Bases de Datos I
