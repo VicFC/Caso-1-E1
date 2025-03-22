@@ -32,6 +32,10 @@ A continuación se listan todas las entidades relevantes a la creación de las t
 
 ## Scripts
 
+### Creación de Base de Datos
+### Llenado de Datos
+### Consultas
+
 
 
 
