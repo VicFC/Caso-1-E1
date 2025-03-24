@@ -1268,6 +1268,20 @@ values ("10 pagos al mes", "enabled", "Varchar"),
 
 select * from planFeatures;
 
+-- Codigos de error para consulta 4
+update interaction
+join dataPerInteraction ON interaction.interactionid = dataPerInteraction.interactionid
+join conversation ON interaction.conversationid = conversation.queryid
+SET interaction.error = case
+                           when interaction.responseTime > 3 then 'Error: High response time'
+                           when dataPerInteraction.certainty < 0.5 then 'Error: Low certainty'
+                           when conversation.starrating < 3 then 'Error: Low star rating'
+                           else NULL
+                        end
+where interaction.responseTime > 3
+   OR dataPerInteraction.certainty < 0.5
+   OR conversation.starrating < 3;
+
 
 ```
 </details>
@@ -1314,7 +1328,25 @@ INSERT
 <br>
 
 ```sql
-INSERT
+
+select -- Mayor a menor
+    payment_users.userid, 
+    CONCAT(payment_users.firstName, ' ', payment_users.lastName) AS Nombre, 
+    COUNT(transacciones.idTransaciones) AS TransaccionesTotales
+from paymentAssistant.payment_users
+join paymentAssistant.transacciones ON payment_users.userid = transacciones.userid
+group by payment_users.userid order by TransaccionesTotales DESC
+limit 15;
+
+select -- Menor a mayor
+    payment_users.userid, 
+    CONCAT(payment_users.firstName, ' ', payment_users.lastName) AS Nombre, 
+    COUNT(transacciones.idTransaciones) AS TransaccionesTotales
+from paymentAssistant.payment_users
+join paymentAssistant.transacciones ON payment_users.userid = transacciones.userid
+group by payment_users.userid order by TransaccionesTotales ASC
+limit 15;
+
 ```
 </details>
 
@@ -1330,7 +1362,17 @@ INSERT
 <br>
 
 ```sql
-INSERT
+-- Se realiza la consulta entre 3/13 y 3/30 
+
+select interaction.error AS TipoError, COUNT(*) AS Frecuencia
+from interaction
+join dataPerInteraction -- El doble join se ve horrible pero no se como arreglarlo :(
+    ON interaction.interactionid = dataPerInteraction.interactionid
+join conversation
+    ON interaction.conversationid = conversation.queryid
+where conversation.prompttime between '2025-03-13 00:00:00' AND '2025-03-30 00:00:00'
+group by interaction.error order by Frecuencia DESC;
+
 ```
 </details>
 
