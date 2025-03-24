@@ -1333,8 +1333,8 @@ select -- Mayor a menor
     payment_users.userid, 
     CONCAT(payment_users.firstName, ' ', payment_users.lastName) AS Nombre, 
     COUNT(transacciones.idTransaciones) AS TransaccionesTotales
-from paymentAssistant.payment_users
-join paymentAssistant.transacciones ON payment_users.userid = transacciones.userid
+from payment_users
+join transacciones ON payment_users.userid = transacciones.userid
 group by payment_users.userid order by TransaccionesTotales DESC
 limit 15;
 
@@ -1342,8 +1342,8 @@ select -- Menor a mayor
     payment_users.userid, 
     CONCAT(payment_users.firstName, ' ', payment_users.lastName) AS Nombre, 
     COUNT(transacciones.idTransaciones) AS TransaccionesTotales
-from paymentAssistant.payment_users
-join paymentAssistant.transacciones ON payment_users.userid = transacciones.userid
+from payment_users
+join transacciones ON payment_users.userid = transacciones.userid
 group by payment_users.userid order by TransaccionesTotales ASC
 limit 15;
 
