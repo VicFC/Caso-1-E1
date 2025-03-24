@@ -1259,6 +1259,16 @@ END //
 
 call LlenarDeDPInter;
 select * from dataPerInteraction
+
+alter table planFeatures auto_increment = 1;
+insert into planFeatures (description, enabled, dataType)
+values ("10 pagos al mes", "enabled", "Varchar"),
+("15 pagos al mes", "enabled", "INT"),
+("20+ pagos al mes", "enabled", "Varchar");
+
+select * from planFeatures;
+
+
 ```
 </details>
 
