@@ -455,7 +455,6 @@ CREATE TABLE IF NOT EXISTS `paymentAssistant`.`schedules` (
   `endType` BIT(3) NOT NULL,
   `repetitions` INT(2) NOT NULL,
   `endDate` DATE NULL,
-  `schedulescol` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`schedulesid`))
 ENGINE = InnoDB;
 
@@ -488,7 +487,6 @@ CREATE TABLE IF NOT EXISTS `paymentAssistant`.`subscriptions` (
   `subscriptionsid` INT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(50) NOT NULL,
   `logoURL` VARCHAR(100) NOT NULL,
-  `subscriptionscol` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`subscriptionsid`))
 ENGINE = InnoDB;
 
@@ -504,7 +502,6 @@ CREATE TABLE IF NOT EXISTS `paymentAssistant`.`planPrices` (
   `recurrencyType` BIT(3) NOT NULL,
   `postTime` TIME NOT NULL,
   `endDate` DATE NOT NULL,
-  `planPricescol` VARCHAR(45) NOT NULL,
   `current` BIT(1) NOT NULL,
   PRIMARY KEY (`planPricesid`),
   INDEX `fk_planPrices_subscriptions1_idx` (`subscriptionsid` ASC) VISIBLE,
@@ -528,7 +525,6 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `paymentAssistant`.`planFeatures` (
   `planFeaturesid` INT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(50) NOT NULL,
-  `planFeaturescol` BIT(1) NOT NULL,
   `enabled` VARCHAR(45) NOT NULL,
   `dataType` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`planFeaturesid`))
@@ -597,11 +593,11 @@ CREATE TABLE IF NOT EXISTS `paymentAssistant`.`personPlanLimits` (
   `personPlanLimitsid` INT NOT NULL AUTO_INCREMENT,
   `planpricesid` INT NOT NULL,
   `userid` INT NOT NULL,
-  `planPerPerson_schedulesid` INT NOT NULL,
+  `schedulesid` INT NOT NULL,
   `planFeaturesid` INT NOT NULL,
   `limit` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`personPlanLimitsid`),
-  INDEX `fk_personPlanLimits_planPerPerson1_idx` (`planpricesid` ASC, `userid` ASC, `planPerPerson_schedulesid` ASC) VISIBLE,
+  INDEX `fk_personPlanLimits_planPerPerson1_idx` (`planpricesid` ASC, `userid` ASC, `schedulesid` ASC) VISIBLE,
   INDEX `fk_personPlanLimits_planFeatures1_idx` (`planFeaturesid` ASC) VISIBLE,
   CONSTRAINT `fk_personPlanLimits_planPerPerson1`
     FOREIGN KEY (`planpricesid` , `userid`)
@@ -885,6 +881,7 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 ```
 </details>
