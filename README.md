@@ -33,7 +33,22 @@ A continuación se listan todas las entidades relevantes a la creación de las t
 ## Scripts
 
 ### Creación de Base de Datos
+
+
 ### Llenado de Datos
+```sql
+use paymentAssistant;
+
+DROP TEMPORARY TABLE IF EXISTS tempNames;
+CREATE TEMPORARY TABLE tempNames (indivName varchar(30));
+INSERT INTO tempNames
+VALUES ("Carlos"), ("María"), ("José"), ("Ana"), ("Juan"), ("Gabriela"), ("Luis"), ("Fernanda"), ("Miguel"), ("Valeria"),
+("Antonio"), ("Camila"), ("Fernando"), ("Daniela"), ("Javier"), ("Lucía"), ("Ricardo"), ("Sofía"), ("Andrés"), ("Isabela"),
+("Manuel"), ("Carla"), ("Hugo"), ("Elena"), ("Emilio"), ("Paula"), ("Raúl"), ("Beatriz"), ("Diego"), ("Patricia"),
+("Santiago"), ("Adriana"), ("Ángel"), ("Rocío"), ("Martín"), ("Verónica"), ("Pablo"), ("Cecilia"), ("Héctor"), ("Lorena"),
+("Esteban"), ("Clara"), ("Rubén"), ("Alejandra"), ("Sebastián"), ("Mónica"), ("Gustavo"), ("Julieta"), ("Ramón"), ("Ximena");
+```
+
 ### Consultas
 
 
