@@ -1366,9 +1366,9 @@ limit 15;
 
 select interaction.error AS TipoError, COUNT(*) AS Frecuencia
 from interaction
-join dataPerInteraction -- El doble join se ve horrible pero no se como arreglarlo :(
+join dataPerInteraction -- int a dataper
     ON interaction.interactionid = dataPerInteraction.interactionid
-join conversation
+join conversation -- id a query
     ON interaction.conversationid = conversation.queryid
 where conversation.prompttime between '2025-03-13 00:00:00' AND '2025-03-30 00:00:00'
 group by interaction.error order by Frecuencia DESC;
