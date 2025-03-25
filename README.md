@@ -896,6 +896,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 ```sql
 
 use paymentAssistant;
+SET SQL_SAFE_UPDATES = 0;
+
+-- Usuarios ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 DROP TEMPORARY TABLE IF EXISTS tempNames;
 CREATE TEMPORARY TABLE tempNames (indivName varchar(30));
@@ -929,7 +932,7 @@ DELIMITER //
 
 CREATE PROCEDURE LlenarDeUsers()
 BEGIN
-	set @countUsers = 30;
+	set @countUsers = 45;
 	while @countUsers > 0 do
 
 		set @tempNameHolder = "This_is_temporary_va";
@@ -963,6 +966,11 @@ END //
 call LlenarDeUsers;
 select * from payment_users;
 
+
+
+
+-- Transacciones y Pagos ----------------------------------------------------------------------------------------------------------------------------------------------------
+
 insert into moneda (name, acronym)
 values ("Costa Rican Colón", "CRC"), ("US Dollar", "USD"), ("Euro", "EUR"), ("British Pound", "GBP"), ("Japanese Yen", "JPY"),
 ("Mexican Peso", "MXN"), ("Brazilian Real", "BRL"), ("Argentine Peso", "ARS"), ("Canadian Dollar", "CAD"), ("Swiss Franc", "CHF");
@@ -982,6 +990,7 @@ values (1, CURDATE(), DATE_ADD(CURDATE(), INTERVAL FLOOR(RAND() * 30) DAY), 1, 1
 
 select * from exchange;
 
+
 insert into metodoDePago (name, ApiURL, secretKey, metodoDePago.key, logoIconVal, enabled)
 values ('Stripe', 'https://api.stripe.com/v1/charges/', SHA2(RAND(), 224), SHA2(RAND(), 224), null, 1),
 ('Authorize.net', 'https://www.sandbox.paypal.com', SHA2(RAND(), 224), SHA2(RAND(), 224), null, 1),
@@ -990,6 +999,8 @@ values ('Stripe', 'https://api.stripe.com/v1/charges/', SHA2(RAND(), 224), SHA2(
 ('Braintree', 'https://payments.braintree-api.com', SHA2(RAND(), 224), SHA2(RAND(), 224), null, 1);
 
 select * from metodoDePago;
+
+
 
 DROP PROCEDURE IF EXISTS LlenarDeMediosDisponibles;
 DELIMITER //
@@ -1035,10 +1046,12 @@ END //
 call LlenarDeMediosDisponibles;
 select * from mediosDisponibles
 
+
 insert into transTypes (name)
 values ("Credit"), ("Debit"), ("BitCoin"), ("Bank Transfer"), ("Digital Wallet"), ("SIMPE");
-
 select * from transTypes;
+
+
 
 DROP PROCEDURE IF EXISTS LlenarDePagos;
 DELIMITER //
@@ -1078,6 +1091,8 @@ END //
 
 call LlenarDePagos;
 select * from pagos
+
+
 
 DROP PROCEDURE IF EXISTS LlenarDeTrans;
 DELIMITER //
@@ -1124,6 +1139,10 @@ END //
 call LlenarDeTrans;
 select * from transacciones
 
+
+
+-- AI --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 DROP TEMPORARY TABLE IF EXISTS tempRequests;
 CREATE TEMPORARY TABLE tempRequests (indivName varchar(30));
 INSERT INTO tempRequests
@@ -1168,11 +1187,14 @@ END //
 call LlenarDeConv;
 select * from conversation
 
+
 insert into statusType (statusType.name)
 values ("New Entry"), ("Changed Entry"), ("Deleted Entry");
 
 insert into interactionDataTypes (interactionDataTypes.name)
 values ("Phone Number"), ("Email"), ("Account Name"), ("Transaction"), ("User alias"), ("Date & Time")
+
+
 
 DROP PROCEDURE IF EXISTS LlenarDeInter;
 DELIMITER //
@@ -1207,6 +1229,8 @@ END //
 
 call LlenarDeInter;
 select * from interaction
+
+
 
 DROP PROCEDURE IF EXISTS LlenarDeDPInter;
 DELIMITER //
@@ -1260,15 +1284,7 @@ END //
 call LlenarDeDPInter;
 select * from dataPerInteraction
 
-alter table planFeatures auto_increment = 1;
-insert into planFeatures (description, enabled, dataType)
-values ("10 pagos al mes", "enabled", "Varchar"),
-("15 pagos al mes", "enabled", "INT"),
-("20+ pagos al mes", "enabled", "Varchar");
-
-select * from planFeatures;
-
--- Codigos de error para consulta 4
+-- Introducción de errores
 update interaction
 join dataPerInteraction ON interaction.interactionid = dataPerInteraction.interactionid
 join conversation ON interaction.conversationid = conversation.queryid
@@ -1281,6 +1297,64 @@ SET interaction.error = case
 where interaction.responseTime > 3
    OR dataPerInteraction.certainty < 0.5
    OR conversation.starrating < 3;
+
+select * from interaction
+
+
+
+-- Planes y Precios ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+insert into subscriptions (description, logoURL)
+values ("Standard", "https://iconlogo.com/standard"), 
+("Premium", "https://iconlogo.com/premium"), 
+("Deluxe", "https://iconlogo.com/deluxe");
+select * from subscriptions
+
+insert into planfeatures (description, enabled, dataType)
+values ("15 pagos al mes", "Activo", "Varchar"),
+("25 pagos al mes", "Activo", "Varchar"),
+("35 pagos al mes", "Activo", "Varchar");
+select * from planfeatures
+
+insert into featuresPerPlans (planFeaturesid, subscriptionsid, value, enabled)
+values (1,1, "Varchar",1),
+(2,2, "Varchar",1),
+(3,3, "Varchar",1);
+select * from featuresPerPlans
+
+insert into planPrices (subscriptionsid, monedaid, amount, recurrencyType, postTime, endDate, current)
+values (1,1,80000.00,1,"00:00:00","2025-12-12",1),
+	   (2,1,70000.00,1,"00:00:00","2025-12-12",1),
+       (3,1,90000.00,1,"00:00:00","2025-12-12",1);
+select * from planPrices
+
+insert into schedules (name, recoveryType, endType, repetitions, endDate)
+values ("Mensualidad",1,1,99,NULL);
+select * from schedules
+
+
+DROP PROCEDURE IF EXISTS LlenarPlanes;
+DELIMITER //
+
+CREATE PROCEDURE LlenarPlanes()
+BEGIN
+	set @countUsers = 45;
+	while @countUsers > 0 do
+
+		set @price = FLOOR(1 + (RAND() * 3));
+		set @date = DATE_ADD('2024-01-01', interval FLOOR(RAND() * 365) day);
+		
+        insert into planPerPerson (planPricesid, userid, schedulesid, aquiredDate, enabled)
+        values (@price, @countUsers, 1, @date, 1);
+        
+		set @countUsers = @countUsers - 1;
+    
+    end while;
+END //
+
+call LlenarPlanes();
+select * from planPerPerson
 
 
 ```
@@ -1298,7 +1372,16 @@ where interaction.responseTime > 3
 <br>
 
 ```sql
-INSERT
+select 
+	payment_users.userid,
+    CONCAT(payment_users.firstName, ' ', payment_users.lastName) AS NombreCompleto, 
+    payment_users.email AS Correo, 
+    payment_users.country AS País,
+    (TIMESTAMPDIFF(MONTH, planPerPerson.aquiredDate, CURDATE()) + 1) * planPrices.amount AS TotalPagado
+from payment_users
+join planPerPerson ON payment_users.userid = planPerPerson.userid
+join planPrices ON planPerPerson.planPricesid = planPrices.planPricesid
+where planPerPerson.enabled = 1
 ```
 </details>
 
@@ -1312,7 +1395,15 @@ INSERT
 <br>
 
 ```sql
-INSERT
+select 
+    planPerPerson.userid,
+    CONCAT(payment_users.firstName, ' ', payment_users.lastName) AS NombreCompleto,
+    payment_users.email AS Correo
+from planPerPerson
+join payment_users ON planPerPerson.userid = payment_users.userid
+where DATEDIFF(
+        LAST_DAY(CURDATE()), 
+        DATE_FORMAT(CONCAT(YEAR(CURDATE()), '-', MONTH(CURDATE()), '-', DAY(planPerPerson.aquiredDate)), '%Y-%m-%d')) < 15;
 ```
 </details>
 
@@ -1328,7 +1419,6 @@ INSERT
 <br>
 
 ```sql
-
 select -- Mayor a menor
     payment_users.userid, 
     CONCAT(payment_users.firstName, ' ', payment_users.lastName) AS Nombre, 
@@ -1346,7 +1436,6 @@ from payment_users
 join transacciones ON payment_users.userid = transacciones.userid
 group by payment_users.userid order by TransaccionesTotales ASC
 limit 15;
-
 ```
 </details>
 
@@ -1362,13 +1451,13 @@ limit 15;
 <br>
 
 ```sql
--- Se realiza la consulta entre 3/13 y 3/30 
+-- Se realiza la consulta entre 3/13 y 3/30
 
 select interaction.error AS TipoError, COUNT(*) AS Frecuencia
 from interaction
-join dataPerInteraction -- int a dataper
+join dataPerInteraction
     ON interaction.interactionid = dataPerInteraction.interactionid
-join conversation -- id a query
+join conversation
     ON interaction.conversationid = conversation.queryid
 where conversation.prompttime between '2025-03-13 00:00:00' AND '2025-03-30 00:00:00'
 group by interaction.error order by Frecuencia DESC;
