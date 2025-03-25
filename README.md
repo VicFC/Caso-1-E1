@@ -1383,7 +1383,59 @@ join planPerPerson ON payment_users.userid = planPerPerson.userid
 join planPrices ON planPerPerson.planPricesid = planPrices.planPricesid
 where planPerPerson.enabled = 1
 ```
+
+| userid | Nombre Completo       | Correo                    | Pais                | TotalPagado |
+|--------|-----------------------|---------------------------|---------------------|-------------|
+| 1      | José Medina           | José508@gmail.com         | South Korea         | 880000.00   |
+| 5      | Carla Vargas           | Carla328@gmail.com        | Colombia            | 1200000.00  |
+| 6      | Raúl Pacheco           | Raúl988@gmail.com         | Nigeria             | 320000.00   |
+| 7      | Verónica Salazar       | Verónica485@gmail.com     | Indonesia           | 240000.00   |
+| 10     | Paula López            | Paula972@gmail.com        | Panama              | 960000.00   |
+| 11     | Ana Bermúdez           | Ana208@gmail.com          | South Africa        | 880000.00   |
+| 20     | Ricardo Pérez          | Ricardo154@gmail.com      | Paraguay            | 720000.00   |
+| 30     | Cecilia Rojas          | Cecilia400@gmail.com      | Philippines         | 1120000.00  |
+| 32     | Andrés García          | Andrés283@gmail.com       | India               | 960000.00   |
+| 41     | Sofía Reyes            | Sofía639@gmail.com        | Panama              | 320000.00   |
+| 2      | Camila García          | Camila319@gmail.com       | South Korea         | 910000.00   |
+| 3      | Beatriz Cárdenas       | Beatriz539@gmail.com      | United Kingdom      | 630000.00   |
+| 4      | Esteban Flores         | Esteban912@gmail.com      | United Kingdom      | 350000.00   |
+| 9      | Emilio Delgado         | Emilio58@gmail.com        | Australia           | 980000.00   |
+| 12     | Héctor Flores          | Héctor960@gmail.com       | Nigeria             | 700000.00   |
+| 13     | Héctor Sánchez         | Héctor764@gmail.com       | Japan               | 420000.00   |
+| 16     | Santiago Peralta       | Santiago290@gmail.com     | Turkey              | 700000.00   |
+| 17     | Elena Torres           | Elena367@gmail.com        | Malaysia            | 560000.00   |
+| 18     | Ricardo Rojas          | Ricardo507@gmail.com      | Venezuela           | 770000.00   |
+| 21     | Sofía Peralta          | Sofía554@gmail.com        | Colombia            | 1050000.00  |
+| 23     | Valeria Aguilar        | Valeria948@gmail.com      | Philippines         | 630000.00   |
+| 25     | Carlos Miranda         | Carlos826@gmail.com       | Greece              | 980000.00   |
+| 26     | María Pérez            | María105@gmail.com        | Mexico              | 490000.00   |
+| 27     | Fernando López         | Fernando37@gmail.com      | China               | 770000.00   |
+| 29     | Esteban Peña           | Esteban174@gmail.com      | Dominican Republic  | 630000.00   |
+| 31     | Gabriela Mejía         | Gabriela407@gmail.com     | Bolivia             | 1050000.00  |
+| 33     | Patricia López         | Patricia696@gmail.com     | Egypt               | 1050000.00  |
+| 34     | Fernando Valenzuela    | Fernando541@gmail.com     | Dominican Republic  | 350000.00   |
+| 36     | Santiago Ramos         | Santiago413@gmail.com     | Ecuador             | 210000.00   |
+| 37     | Santiago Gómez         | Santiago638@gmail.com     | India               | 560000.00   |
+| 38     | Pablo Flores           | Pablo386@gmail.com        | Greece              | 770000.00   |
+| 39     | Beatriz García         | Beatriz962@gmail.com      | Kenya               | 280000.00   |
+| 40     | Rubén Rivera           | Rubén560@gmail.com        | Nicaragua           | 770000.00   |
+| 42     | Patricia Peralta       | Patricia734@gmail.com     | Spain               | 280000.00   |
+| 43     | Rocío Ramírez          | Rocío715@gmail.com        | Morocco             | 910000.00   |
+| 45     | Valeria Mendoza        | Valeria887@gmail.com      | New Zealand         | 840000.00   |
+| 8      | Beatriz Álvarez        | Beatriz528@gmail.com      | South Korea         | 900000.00   |
+| 14     | Gustavo López          | Gustavo23@gmail.com       | Nicaragua           | 810000.00   |
+| 15     | Juan Martínez          | Juan281@gmail.com         | Australia           | 990000.00   |
+| 19     | Verónica Villanueva    | Verónica883@gmail.com     | Turkey              | 450000.00   |
+| 22     | José Salazar           | José660@gmail.com         | Peru                | 1080000.00  |
+| 24     | Gustavo Montoya        | Gustavo323@gmail.com      | Puerto Rico         | 990000.00   |
+| 28     | Beatriz Castillo       | Beatriz204@gmail.com      | El Salvador         | 360000.00   |
+| 35     | Manuel Peña            | Manuel341@gmail.com       | Sweden              | 720000.00   |
+| 44     | Ximena Aguilar         | Ximena347@gmail.com       | Australia           | 630000.00   |
+
+
 </details>
+
+
 
 [//]: <> (----------------------------------------------------CONSULTA 2-------------------------------------------------------------------------)
 
@@ -1405,6 +1457,28 @@ where DATEDIFF(
         LAST_DAY(CURDATE()), 
         DATE_FORMAT(CONCAT(YEAR(CURDATE()), '-', MONTH(CURDATE()), '-', DAY(planPerPerson.aquiredDate)), '%Y-%m-%d')) < 15;
 ```
+
+| userid | NombreCompleto         | Correo                    |
+|--------|------------------------|---------------------------|
+| 1      | José Medina            | José508@gmail.com         |
+| 7      | Verónica Salazar       | Verónica485@gmail.com     |
+| 11     | Ana Bermúdez           | Ana208@gmail.com          |
+| 32     | Andrés García          | Andrés283@gmail.com       |
+| 41     | Sofía Reyes            | Sofía639@gmail.com        |
+| 4      | Esteban Flores         | Esteban912@gmail.com      |
+| 9      | Emilio Delgado         | Emilio58@gmail.com        |
+| 13     | Héctor Sánchez         | Héctor764@gmail.com       |
+| 16     | Santiago Peralta       | Santiago290@gmail.com     |
+| 23     | Valeria Aguilar        | Valeria948@gmail.com      |
+| 26     | María Pérez            | María105@gmail.com        |
+| 29     | Esteban Peña           | Esteban174@gmail.com      |
+| 33     | Patricia López         | Patricia696@gmail.com     |
+| 36     | Santiago Ramos         | Santiago413@gmail.com     |
+| 45     | Valeria Mendoza        | Valeria887@gmail.com      |
+| 15     | Juan Martínez          | Juan281@gmail.com         |
+| 19     | Verónica Villanueva    | Verónica883@gmail.com     |
+
+
 </details>
 
 
@@ -1417,6 +1491,8 @@ where DATEDIFF(
 </summary>
 
 <br>
+
+En este caso, se decidió que la cantidad de transacciones determinan que tanto un usuario usa el programa.
 
 ```sql
 select -- Mayor a menor
@@ -1437,6 +1513,44 @@ join transacciones ON payment_users.userid = transacciones.userid
 group by payment_users.userid order by TransaccionesTotales ASC
 limit 15;
 ```
+
+| userid | Nombre             | TransaccionesTotales |
+|--------|--------------------|----------------------|
+| 5      | Carla Vargas       | 2                    |
+| 20     | Ricardo Pérez      | 2                    |
+| 26     | María Pérez        | 2                    |
+| 2      | Camila García      | 1                    |
+| 6      | Raúl Pacheco       | 1                    |
+| 7      | Verónica Salazar   | 1                    |
+| 8      | Beatriz Álvarez    | 1                    |
+| 9      | Emilio Delgado     | 1                    |
+| 10     | Paula López        | 1                    |
+| 14     | Gustavo López      | 1                    |
+| 15     | Juan Martínez      | 1                    |
+| 25     | Carlos Miranda     | 1                    |
+| 27     | Fernando López     | 1                    |
+| 29     | Esteban Peña       | 1                    |
+| 33     | Patricia López     | 1                    |
+
+| userid | Nombre             | TransaccionesTotales |
+|--------|--------------------|----------------------|
+| 2      | Camila García      | 1                    |
+| 36     | Santiago Ramos     | 1                    |
+| 6      | Raúl Pacheco       | 1                    |
+| 7      | Verónica Salazar   | 1                    |
+| 8      | Beatriz Álvarez    | 1                    |
+| 9      | Emilio Delgado     | 1                    |
+| 10     | Paula López        | 1                    |
+| 14     | Gustavo López      | 1                    |
+| 15     | Juan Martínez      | 1                    |
+| 44     | Ximena Aguilar     | 1                    |
+| 25     | Carlos Miranda     | 1                    |
+| 35     | Manuel Peña        | 1                    |
+| 27     | Fernando López     | 1                    |
+| 29     | Esteban Peña       | 1                    |
+| 33     | Patricia López     | 1                    |
+
+
 </details>
 
 
@@ -1463,6 +1577,15 @@ where conversation.prompttime between '2025-03-13 00:00:00' AND '2025-03-30 00:0
 group by interaction.error order by Frecuencia DESC;
 
 ```
+
+| TipoError                  | Frecuencia |
+|----------------------------|------------|
+| High response time          | 36         |
+| Low certainty               | 27         |
+| Low star rating             | 6          |
+| NULL (No error             )| 4          |
+
+
 </details>
 
 [//]: <> (-----------------------------------------------ESTUDIANTES-----------------------------------------------------)
