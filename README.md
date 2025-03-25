@@ -498,7 +498,7 @@ CREATE TABLE IF NOT EXISTS `paymentAssistant`.`planPrices` (
   `planPricesid` INT NOT NULL AUTO_INCREMENT,
   `subscriptionsid` INT NOT NULL,
   `monedaid` INT NOT NULL,
-  `amount` DECIMAL(3,2) NOT NULL,
+  `amount` DECIMAL(7,2) NOT NULL,
   `recurrencyType` BIT(3) NOT NULL,
   `postTime` TIME NOT NULL,
   `endDate` DATE NOT NULL,
